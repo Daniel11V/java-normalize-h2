@@ -1,0 +1,44 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.coderhouse'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+configurations.all {
+	exclude module: 'spring-boot-starter-logging'
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'com.h2database:h2'
+	implementation "org.springframework.boot:spring-boot-starter-log4j2"
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.13.1'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+
+}
+
+test {
+	useJUnitPlatform()
+}
